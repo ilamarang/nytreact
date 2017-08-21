@@ -1,0 +1,36 @@
+{
+  "name": "nytreact",
+  "version": "1.0.0",
+  "description": "Search and Save NYT articles !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilamarang/nytreact.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilamarang/nytreact/issues"
+  },
+  "homepage": "https://github.com/ilamarang/nytreact#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "json-loader": "^0.5.7",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "request": "^2.81.0",
+    "webpack": "^3.5.5"
+  }
+}
