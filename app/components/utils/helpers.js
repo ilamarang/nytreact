@@ -26,7 +26,17 @@ const helpers = {
 
     });
 
+  },
+  getSavedArticles: ()=> {
+  return axios.get("/savedArticles").then(function(response) {
+    if (response.data.results[0]) {
+        return response.data.results[0];
+      }
+      // If we don't get any results, return an empty string
+      return "";
+    });
   }
+
 };
 
 // We export the helpers function (which contains getGithubInfo)
