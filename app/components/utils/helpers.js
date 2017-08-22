@@ -28,8 +28,8 @@ const helpers = {
     }).then((res) => {
 
       console.log(res);
-      console.log(res["data"].response);
-
+      console.log(res["data"].response.docs);
+      return(res["data"].response.docs)
     });
 
   },

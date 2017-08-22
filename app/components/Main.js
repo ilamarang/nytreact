@@ -3,6 +3,7 @@ import React from 'react';
 // Import sub-components
 import helpers from './utils/helpers'
 import SearchSection from './children/SearchSection'
+import SearchResultSection from './children/SearchResultSection'
 
 // Helper Function
 
@@ -13,7 +14,7 @@ var Main = React.createClass ({
       searchTerm: "",
       startDate: "",
       endDate: "",
-      results: "",
+      results: [],
       history: []
     };
   },
@@ -35,7 +36,7 @@ searchNYT: function(params) {
   helpers.runQuery(params).then(function(data) {
     console.log(data)
     if (data !== this.state.results) {
-      console.log("Address", data);
+      console.log("Search Results", data);
       this.setState({ results: data });
     }
   }.bind(this));
@@ -57,7 +58,7 @@ searchNYT: function(params) {
 
 
           <div className="row">
-
+            <SearchResultSection searchResults = {this.state.results}/>
           </div>
 
           <div className="row">
