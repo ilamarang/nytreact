@@ -17,7 +17,7 @@ var SearchSection = React.createClass({
 
    this.setState({
      fromDate: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-     formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
+     formattedFromDateValue: formattedValue // Formatted String, ex: "11/19/2016"
    });
 
  },
@@ -26,13 +26,16 @@ var SearchSection = React.createClass({
 
    this.setState({
      toDate: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-     formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
+     formattedToDateValue: formattedValue // Formatted String, ex: "11/19/2016"
    });
 
  },
  handleOnClick: function(event) {
-   console.log('Handle On Click')
-   console.log(this.state)
+   console.log('Handle On Click');
+
+   console.log(this.state);
+   this.props.searchNYT(this.state)
+
  },
  handleChange: function(event) {
     this.setState({searchTerm: event.target.value});

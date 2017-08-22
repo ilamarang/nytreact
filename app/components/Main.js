@@ -29,21 +29,16 @@ componentDidMount: function() {
     }
   }.bind(this));
 },
-
-componentDidUpdate: function() {
-
-  // Run the query for the address
-  helpers.runQuery(this.state.searchTerm).then(function(data) {
+searchNYT: function(params) {
+  console.log(params.formattedFromDateValue);
+  console.log(params.formattedToDateValue);
+  helpers.runQuery(params).then(function(data) {
     console.log(data)
     if (data !== this.state.results) {
       console.log("Address", data);
       this.setState({ results: data });
     }
   }.bind(this));
-
-},
-searchNYT: function(params) {
-  console.log(params)
 }
 ,
 

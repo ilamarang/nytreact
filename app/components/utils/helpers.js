@@ -7,7 +7,7 @@ const APIKey = "9e38d3001eee43ba8a1d2a51ab80a59a";
 // Helper Functions (in this case the only one is runQuery)
 const helpers = {
 
-  runQuery: (location) => {
+  runQuery: (searchParams) => {
 
     console.log(location);
 
@@ -17,7 +17,7 @@ const helpers = {
     return axios.get(queryURL,{
       params :{
         'api-key': APIKey,
-        'q': 'Eclipse'
+        'q': searchParams.searchTerm
       }
     }).then((res) => {
 
