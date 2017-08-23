@@ -1,29 +1,62 @@
 // Include React
-var React = require("react");
+import React from 'react';
+import helpers from '../utils/helpers'
 
 // This is the History component. It will be used to show a log of  recent searches.
-var SearchResultSection= React.createClass({
+class SearchResultSection extends React.Component {
   // Here we describe this component's render method
-  render: function() {
+  constructor(props) {
+		super(props);
+    console.log('Inside Contructor');
+		this.saveArticle = this.saveArticle.bind(this);
+	}
 
+  saveArticle(searchData,event) {
+    console.log(event);
+    console.log(searchData)
+    var article = {
+      title:searchData.headline.main,
+      date:searchData.pub_date.substring(0, 10),
+      url:searchData.web_url
+
+    }
+    helpers.saveArticle(article).then(function(data){
+
+    })
+  }
+
+  render() {
+    {console.log('Rendering now')}
+    var thisObject = this;
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
           <h3 className="panel-title text-center">NYT Search Results</h3>
         </div>
         <div className="panel-body text-center">
-
+          <ul className="list-group col-md-8 col-md-offset-2">
           {/* Here we use a map function to loop through an array in JSX */}
           {this.props.searchResults.map(function(searchData, i) {
             return (
-              <p key={i}> {searchData.headline.main} </p>
+              <li key={searchData._id} className="list-group-item" style={ {borderWidth: "0px"} }>
+                  <div className="input-group">
+                    <div type="text" className="form-control">
+                      <b><a href={searchData.web_url} target="_new" style={ {color: "black"} }>{searchData.headline.main}</a></b>
+                      <i> {searchData.pub_date.substring(0, 10)}</i>
+                    </div>
+                    <span className="input-group-btn">
+                      <button className="btn btn-success" onClick = {thisObject.saveArticle.bind(thisObject,searchData)} type="button"  value={searchData._id}>Save</button>
+                    </span>
+                  </div>
+                </li>
             );
           })}
+          </ul>
         </div>
       </div>
     );
   }
-});
+};
 
 // Export the component back for use in other files
-module.exports = SearchResultSection;
+export default SearchResultSection;

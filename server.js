@@ -3,6 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var Article = require("./models/Article.js");
 
 
 
@@ -31,7 +32,7 @@ app.use(express.static("public"));
 // -------------------------------------------------
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
+mongoose.connect(MONGODB);
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -51,13 +52,42 @@ app.get("/", function(req, res) {
 
 // This is the route we will send GET requests to retrieve our most recent search data.
 // We will call this route the moment our page gets rendered
-app.get("/api", function(req, res) {
+app.get("api/getSavedArticles", function(req, res) {
 
+  Article.find({})
+    .exec(function(err,doc) {
+    console.log(doc);
+    res.json(doc);
+
+  })
 
 });
 
 // This is the route we will send POST requests to save each search.
-app.post("/api", function(req, res) {
+app.post("/api/saveArticle", function(req, res) {
+console.log(req.body);
+var article = {
+
+  title: req.body.title,
+  date: req.body.date,
+  url: req.body.url
+
+}
+
+
+var entry = new Article(article);
+
+// Now, save that entry to the db
+entry.save(function(err, doc) {
+  // Log any errors
+  if (err) {
+    console.log(err);
+  }
+  // Or log the doc
+  else {
+      res.json(doc);
+  }
+});
 
 });
 

@@ -34,13 +34,21 @@ const helpers = {
 
   },
   getSavedArticles: ()=> {
-  return axios.get("/savedArticles").then(function(response) {
+  return axios.get("/api/getSavedArticles").then(function(response) {
     if (response.data.results[0]) {
         return response.data.results[0];
       }
       // If we don't get any results, return an empty string
       return "";
     });
+  },
+  saveArticle: (article) => {
+    console.log('Hello from Save!');
+    return axios.post("/api/saveArticle",article).then(function(response) {
+
+        console.log(response)
+
+    })
   }
 
 };
