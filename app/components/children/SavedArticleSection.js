@@ -8,26 +8,27 @@ class SavedArticleSection extends React.Component {
   constructor(props) {
 		super(props);
     console.log('Inside Contructor');
-		this.saveArticle = this.saveArticle.bind(this);
+		this.deleteArticle = this.deleteArticle.bind(this);
 	}
 
-  saveArticle(searchData,event) {
+  deleteArticle(articleData,props,event) {
     console.log(event);
-    console.log(searchData)
-    var article = {
-      title:searchData.headline.main,
-      date:searchData.pub_date.substring(0, 10),
-      url:searchData.web_url
-
-    }
-    helpers.saveArticle(article).then(function(data){
-
+    console.log(articleData)
+    helpers.deleteArticle(articleData).then(function(data){
+      props.getSavedArticles();
+      props.displayMessage({
+        showModal:true,
+        modalHeader: 'Success',
+        modalBody: 'Article Deleted successfully'
+      })
     })
+
   }
 
   render() {
     {console.log('Rendering Saved Article')}
     var thisObject = this;
+    var props = this.props
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -46,7 +47,7 @@ class SavedArticleSection extends React.Component {
                       <h4 className="card-title"> This is Article # </h4>
                       <p className="card-text"> {history.title} </p>
                       <a className="btn btn-primary"  target="_blank" href={history.url}> Read Article </a>
-                        <button className="btn btn-success" type="button"> Delete </button>
+                        <button className="btn btn-success" onClick = {thisObject.deleteArticle.bind(thisObject,history,props)} type="button"> Delete </button>
                     </div>
                   </div>
                 </div>

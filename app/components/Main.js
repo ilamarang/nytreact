@@ -75,7 +75,7 @@ this.getSavedArticles();
           </div>
 
           <div className="row">
-            <SavedArticleSection history = {this.state.history} />
+            <SavedArticleSection history = {this.state.history} getSavedArticles = {this.getSavedArticles} displayMessage = {this.displayMessage}/>
           </div>
           <div className="row">
             <StatusDisplay showModal = {this.state.showModal} modalHeader = {this.state.modalHeader} modalBody = {this.state.modalBody}/>

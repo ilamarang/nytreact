@@ -44,8 +44,16 @@ const helpers = {
     });
   },
   saveArticle: (article) => {
-    console.log('Hello from Save!');
+
     return axios.post("/api/saveArticle",article).then(function(response) {
+
+        console.log(response)
+
+    })
+  },
+  deleteArticle: (articleData) => {
+    console.log('Deleting an Article!');
+    return axios.post("/api/deleteArticle",articleData).then(function(response) {
 
         console.log(response)
 

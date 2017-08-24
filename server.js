@@ -91,6 +91,22 @@ entry.save(function(err, doc) {
 
 });
 
+//Delete an article
+// This is the route we will send POST requests to save each search.
+app.post("/api/deleteArticle", function(req, res) {
+console.log(req.body);
+Article.remove({ _id: req.body._id }, function(err) {
+    if (!err) {
+            res.json({});
+
+    }
+    else {
+          console.log('Exception during Delete')
+    }
+});
+
+});
+
 // -------------------------------------------------
 
 // Listener
