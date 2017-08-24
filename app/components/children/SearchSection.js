@@ -47,35 +47,38 @@ var SearchSection = React.createClass({
   return (
     <div className="panel panel-default">
       <div className="panel-heading">
-        <h3 className="panel-title text-center">Query</h3>
+        <h3 className="panel-title text-center">NYT Search Criteria Panel</h3>
       </div>
       <div className="panel-body text-center">
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <h4 className="">
-              <strong>Location</strong>
-            </h4>
-            <div className = "col-md-8 col-md-offset-2">
+            <div className = "col-md-4">
               <input
 
                 type="text"
                 value={this.state.searchTerm}
                 className="form-control text-center"
+                placeholder= "Search Keywords"
                 id="term"
                 onChange={this.handleChange}
                 required
               />
 
             </div>
+            </div>
 
-            <br />
-            <div className= "row">
-              <div className = "col-md-4 col-md-offset-2">
+
+            <div className="form-group">
+              <div className = "col-md-2">
                 <DatePicker id="startDatePicker" value={this.state.fromDate} onChange={this.handleFromDateChange} />
-              </div>
-              <div className = "col-md-4">
+
+
+                </div>
+
+              <div className = "col-md-2">
                 <DatePicker id="toDatePicker" value={this.state.toDate} onChange={this.handleToDateChange} />
-              </div>
+
+
             </div>
 
             <input
@@ -85,8 +88,8 @@ var SearchSection = React.createClass({
               value = "SUBMIT"
             />
 
+              </div>
 
-          </div>
         </form>
       </div>
     </div>

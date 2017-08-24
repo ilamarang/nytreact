@@ -63,7 +63,7 @@ this.getSavedArticles();
       <div className="container">
         <div className="row">
 
-            <h2 className="text-center">NYT Search!</h2>
+            <h2 className="text-center" id="NYTheader">NYT Search!</h2>
 
           <div className = "row">
           <SearchSection searchNYT = {this.searchNYT}/>
