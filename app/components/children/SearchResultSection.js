@@ -32,9 +32,7 @@ class SearchResultSection extends React.Component {
   }
 
   render() {
-    {console.log('Rendering now')}
-    var thisObject = this;
-    var props = this.props
+
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -43,7 +41,7 @@ class SearchResultSection extends React.Component {
         <div className="panel-body text-center">
           <div className="card-deck">
           {/* Here we use a map function to loop through an array in JSX */}
-          {this.props.searchResults.map(function(searchData, i) {
+          {this.props.searchResults.map((searchData, i)=> {
             return (
 
                 <div className="col-md-4" key={searchData._id}>
@@ -52,7 +50,7 @@ class SearchResultSection extends React.Component {
                       <h4 className="card-title"> This is Article # </h4>
                       <p className="card-text"> {searchData.headline.main} </p>
                       <a className="btn btn-primary"  target="_blank" href={searchData.web_url}> Read Article </a>
-                        <button className="btn btn-success" onClick = {thisObject.saveArticle.bind(thisObject,searchData,props)} type="button"  value={searchData._id}>Save</button>
+                        <button className="btn btn-success" onClick = {() => this.saveArticle(searchData,this.props)} type="button"  value={searchData._id}>Save</button>
                     </div>
                   </div>
                 </div>

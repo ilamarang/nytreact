@@ -12,7 +12,7 @@ class SavedArticleSection extends React.Component {
 	}
 
   deleteArticle(articleData,props,event) {
-    console.log(event);
+    console.log('Inside Delete Article');
     console.log(articleData)
     helpers.deleteArticle(articleData).then(function(data){
       props.getSavedArticles();
@@ -26,9 +26,7 @@ class SavedArticleSection extends React.Component {
   }
 
   render() {
-    {console.log('Rendering Saved Article')}
-    var thisObject = this;
-    var props = this.props
+
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -37,17 +35,16 @@ class SavedArticleSection extends React.Component {
         <div className="panel-body text-center">
             <div className="card-deck">
           {/* Here we use a map function to loop through an array in JSX */}
-          {this.props.history.map(function(history, i) {
+          {this.props.history.map((history, i) => {
             return (
 
-
-                <div className="col-md-4" key={i}>
+              <div className="col-md-4" key={i}>
                   <div className="card card-inverse card-primary text-center">
                     <div className="card-block">
                       <h4 className="card-title"> This is Article # </h4>
                       <p className="card-text"> {history.title} </p>
                       <a className="btn btn-primary"  target="_blank" href={history.url}> Read Article </a>
-                        <button className="btn btn-success" onClick = {thisObject.deleteArticle.bind(thisObject,history,props)} type="button"> Delete </button>
+                        <button className="btn btn-success" onClick = {()=>this.deleteArticle(history,this.props)} type="button"> Delete </button>
                     </div>
                   </div>
                 </div>
