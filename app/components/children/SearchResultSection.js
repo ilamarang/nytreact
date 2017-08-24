@@ -47,7 +47,7 @@ class SearchResultSection extends React.Component {
                 <div className="col-md-4" key={searchData._id}>
                   <div className="card card-inverse card-primary text-center">
                     <div className="card-block">
-                      <h4 className="card-title"> This is Article # </h4>
+                      <h4 className="card-title"> This is Article # { i + 1}</h4>
                       <p className="card-text"> {searchData.headline.main} </p>
                       <a className="btn btn-primary"  target="_blank" href={searchData.web_url}> Read Article </a>
                         <button className="btn btn-success" onClick = {() => this.saveArticle(searchData,this.props)} type="button"  value={searchData._id}>Save</button>
