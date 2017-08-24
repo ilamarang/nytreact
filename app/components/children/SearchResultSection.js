@@ -23,7 +23,11 @@ class SearchResultSection extends React.Component {
     }
     helpers.saveArticle(article).then(function(data){
       props.getSavedArticles();
-      props.displayMessage({showModal:true})
+      props.displayMessage({
+        showModal:true,
+        modalHeader: 'Success',
+        modalBody: 'Article Saved successfully'
+      })
     })
   }
 
@@ -42,7 +46,7 @@ class SearchResultSection extends React.Component {
           {this.props.searchResults.map(function(searchData, i) {
             return (
 
-                <div className="col-md-4" id={searchData._id}>
+                <div className="col-md-4" key={searchData._id}>
                   <div className="card card-inverse card-primary text-center">
                     <div className="card-block">
                       <h4 className="card-title"> This is Article # </h4>

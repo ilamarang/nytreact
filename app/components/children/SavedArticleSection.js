@@ -34,24 +34,26 @@ class SavedArticleSection extends React.Component {
           <h3 className="panel-title text-center">Saved Articles!</h3>
         </div>
         <div className="panel-body text-center">
-          <ul className="list-group col-md-8 col-md-offset-2">
+            <div className="card-deck">
           {/* Here we use a map function to loop through an array in JSX */}
           {this.props.history.map(function(history, i) {
             return (
-              <li key={i} className="list-group-item" style={ {borderWidth: "0px"} }>
-                  <div className="input-group">
-                    <div type="text" className="form-control">
-                      <b><a href={history.url} target="_new" style={ {color: "black"} }>{history.title}</a></b>
-                      <i> {history.date}</i>
+
+
+                <div className="col-md-4" key={i}>
+                  <div className="card card-inverse card-primary text-center">
+                    <div className="card-block">
+                      <h4 className="card-title"> This is Article # </h4>
+                      <p className="card-text"> {history.title} </p>
+                      <a className="btn btn-primary"  target="_blank" href={history.url}> Read Article </a>
+                        <button className="btn btn-success" type="button"> Delete </button>
                     </div>
-                    <span className="input-group-btn">
-                      <button className="btn btn-success" type="button"> Delete </button>
-                    </span>
                   </div>
-                </li>
+                </div>
+
             );
           })}
-          </ul>
+        </div>
         </div>
       </div>
     );

@@ -34,7 +34,9 @@ searchNYT: function(params) {
   }.bind(this));
 },
 displayMessage: function(params) {
-this.setState({showModal:true})
+this.setState({showModal:params.showModal,
+modalBody:params.modalBody,
+modalHeader:params.modalHeader})
 
 },
 getSavedArticles: function() {
@@ -76,7 +78,7 @@ this.getSavedArticles();
             <SavedArticleSection history = {this.state.history} />
           </div>
           <div className="row">
-            <StatusDisplay showModal = {this.state.showModal}/>
+            <StatusDisplay showModal = {this.state.showModal} modalHeader = {this.state.modalHeader} modalBody = {this.state.modalBody}/>
           </div>
 
         </div>
