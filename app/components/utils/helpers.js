@@ -35,8 +35,9 @@ const helpers = {
   },
   getSavedArticles: ()=> {
   return axios.get("/api/getSavedArticles").then(function(response) {
-    if (response.data.results[0]) {
-        return response.data.results[0];
+    if (response) {
+        console.log("Saved Article Response!")
+        return response;
       }
       // If we don't get any results, return an empty string
       return "";

@@ -4,6 +4,8 @@ import React from 'react';
 import helpers from './utils/helpers'
 import SearchSection from './children/SearchSection'
 import SearchResultSection from './children/SearchResultSection'
+import StatusDisplay from "./children/StatusDisplay";
+import SavedArticleSection from './children/SavedArticleSection'
 
 // Helper Function
 
@@ -37,7 +39,8 @@ searchNYT: function(params) {
     console.log(data)
     if (data !== this.state.results) {
       console.log("Search Results", data);
-      this.setState({ results: data });
+      this.setState({ results: data , modalOpen:true
+      });
     }
   }.bind(this));
 }
@@ -62,12 +65,13 @@ searchNYT: function(params) {
           </div>
 
           <div className="row">
-
+            <SavedArticleSection history = {this.state.history}/>
           </div>
 
         </div>
 
       </div>
+
     );
   }
 });
