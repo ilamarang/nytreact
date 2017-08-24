@@ -11,9 +11,10 @@ class SearchResultSection extends React.Component {
 		this.saveArticle = this.saveArticle.bind(this);
 	}
 
-  saveArticle(searchData,event) {
-    console.log(event);
-    console.log(searchData)
+  saveArticle(searchData,props,event) {
+
+    console.log(props);
+
     var article = {
       title:searchData.headline.main,
       date:searchData.pub_date.substring(0, 10),
@@ -21,13 +22,15 @@ class SearchResultSection extends React.Component {
 
     }
     helpers.saveArticle(article).then(function(data){
-
+      props.getSavedArticles();
+      props.displayMessage({showModal:true})
     })
   }
 
   render() {
     {console.log('Rendering now')}
     var thisObject = this;
+    var props = this.props
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -45,7 +48,7 @@ class SearchResultSection extends React.Component {
                       <i> {searchData.pub_date.substring(0, 10)}</i>
                     </div>
                     <span className="input-group-btn">
-                      <button className="btn btn-success" onClick = {thisObject.saveArticle.bind(thisObject,searchData)} type="button"  value={searchData._id}>Save</button>
+                      <button className="btn btn-success" onClick = {thisObject.saveArticle.bind(thisObject,searchData,props)} type="button"  value={searchData._id}>Save</button>
                     </span>
                   </div>
                 </li>

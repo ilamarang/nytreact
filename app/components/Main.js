@@ -17,13 +17,27 @@ var Main = React.createClass ({
       startDate: "",
       endDate: "",
       results: [],
-      history: []
+      history: [],
+      showModal:false
     };
   },
+searchNYT: function(params) {
+  console.log(params.formattedFromDateValue);
+  console.log(params.formattedToDateValue);
+  helpers.runQuery(params).then(function(data) {
+    console.log(data)
+    if (data !== this.state.results) {
+      console.log("Search Results", data);
+      this.setState({ results: data
+      });
+    }
+  }.bind(this));
+},
+displayMessage: function(params) {
+this.setState({showModal:true})
 
-  // The moment the page renders get the History
-componentDidMount: function() {
-  // Get the latest history.
+},
+getSavedArticles: function() {
   helpers.getSavedArticles().then(function(response) {
     console.log(response);
     if (response !== this.state.history) {
@@ -32,17 +46,11 @@ componentDidMount: function() {
     }
   }.bind(this));
 },
-searchNYT: function(params) {
-  console.log(params.formattedFromDateValue);
-  console.log(params.formattedToDateValue);
-  helpers.runQuery(params).then(function(data) {
-    console.log(data)
-    if (data !== this.state.results) {
-      console.log("Search Results", data);
-      this.setState({ results: data , modalOpen:true
-      });
-    }
-  }.bind(this));
+
+// The moment the page renders get the History
+componentDidMount: function() {
+// Get the latest history.
+this.getSavedArticles();
 }
 ,
 
@@ -61,11 +69,14 @@ searchNYT: function(params) {
 
 
           <div className="row">
-            <SearchResultSection searchResults = {this.state.results}/>
+            <SearchResultSection searchResults = {this.state.results} displayMessage = {this.displayMessage} getSavedArticles = {this.getSavedArticles}/>
           </div>
 
           <div className="row">
-            <SavedArticleSection history = {this.state.history}/>
+            <SavedArticleSection history = {this.state.history} />
+          </div>
+          <div className="row">
+            <StatusDisplay showModal = {this.state.showModal}/>
           </div>
 
         </div>
